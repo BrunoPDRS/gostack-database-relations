@@ -11,7 +11,7 @@ import {
 import Order from '@modules/orders/infra/typeorm/entities/Order';
 import Product from '@modules/products/infra/typeorm/entities/Product';
 
-@Entity()
+@Entity('orders_products')
 class OrdersProducts {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -19,6 +19,9 @@ class OrdersProducts {
   @ManyToOne(() => Order, order => order.order_products)
   @JoinColumn({ name: 'order_id' })
   order: Order;
+
+  @Column()
+  order_id: string;
 
   @ManyToOne(() => Product, product => product.order_products)
   @JoinColumn({ name: 'product_id' })
@@ -28,12 +31,9 @@ class OrdersProducts {
   product_id: string;
 
   @Column()
-  order_id: string;
-
-  @Column('decimal')
   price: number;
 
-  @Column('int')
+  @Column()
   quantity: number;
 
   @CreateDateColumn()

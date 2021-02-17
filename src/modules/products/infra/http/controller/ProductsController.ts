@@ -9,11 +9,7 @@ export default class ProductsController {
 
     const createProduct = container.resolve(CreateProductService);
 
-    const product = await createProduct.execute({
-      name,
-      price,
-      quantity,
-    });
+    const product = await createProduct.execute({ name, price, quantity });
 
     return response.json(product);
   }

@@ -17,20 +17,20 @@ class Product {
   @Column()
   name: string;
 
-  @Column('decimal')
+  @Column()
   price: number;
 
-  @Column('int')
+  @Column()
   quantity: number;
-
-  @OneToMany(() => OrdersProducts, order_products => order_products.product)
-  order_products: OrdersProducts[];
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => OrdersProducts, order_products => order_products.product)
+  order_products: OrdersProducts[];
 }
 
 export default Product;

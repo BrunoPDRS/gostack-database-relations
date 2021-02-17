@@ -10,10 +10,7 @@ export default class OrdersController {
     const { id } = request.params;
 
     const findOrder = container.resolve(FindOrderService);
-
-    const order = await findOrder.execute({
-      id,
-    });
+    const order = await findOrder.execute({ id });
 
     return response.json(order);
   }
@@ -22,12 +19,8 @@ export default class OrdersController {
     const { customer_id, products } = request.body;
 
     const createOrder = container.resolve(CreateOrderService);
+    const order = await createOrder.execute({ customer_id, products });
 
-    const customer = await createOrder.execute({
-      customer_id,
-      products,
-    });
-
-    return response.json(customer);
+    return response.json(order);
   }
 }
